@@ -52,6 +52,17 @@ PaperPRISM 最终目标交付物是：
 - related works、理论分析、limitations 或已有论文初稿
 - 目标投稿 venue 或写作风格要求
 
+推荐安装方式：
+
+```bash
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+export PAPERPRISM_HOME="${CODEX_HOME}/paperprism"
+
+mkdir -p "$CODEX_HOME/skills" "$PAPERPRISM_HOME"
+cp -R codex_skills/* "$CODEX_HOME/skills/"
+cp -R data scripts paperprism_state_templates "$PAPERPRISM_HOME/"
+```
+
 示例请求：
 
 ```text
