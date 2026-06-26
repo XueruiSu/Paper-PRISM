@@ -1,0 +1,386 @@
+{
+  "version": "0.1.0",
+  "archetypes": [
+    {
+      "id": "observation_to_method",
+      "name": "Observation -> Method",
+      "description": "A paper motivated by a concrete empirical or conceptual observation, followed by a method designed around that observation.",
+      "rationale": "Best when the idea begins with a failure mode, phenomenon, or insight.",
+      "signals": ["observation", "insight", "failure", "phenomenon", "robust", "stability", "gap"],
+      "field_weights": {"has_experiments": 2, "has_task": 1},
+      "persuasion_strategy": "Convince reviewers that the observation is real, non-trivial, and directly explains the method design.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Build a problem-to-insight-to-method storyline.",
+            "paragraphs": [
+              {"purpose": "Context and Problem", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Prior Work and Limitations", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Observation and Method", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Evidence and Contributions", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Related Work",
+            "function": "Position the observation against closest methods and broader background.",
+            "paragraphs": [
+              {"purpose": "Closest Methods", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Broader Context", "sentence_roles": ["Broad Context", "Problem Definition"]}
+            ]
+          },
+          {
+            "name": "Methodology",
+            "function": "Translate the key observation into a concrete algorithmic design.",
+            "paragraphs": [
+              {"purpose": "Design Principle", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Algorithm Components", "sentence_roles": ["Method Overview", "Limitation Analysis"]},
+              {"purpose": "Training or Inference Procedure", "sentence_roles": ["Method Overview", "Experimental Evidence"]}
+            ]
+          },
+          {
+            "name": "Experiments",
+            "function": "Show that the observation is valid and the method improves the target behavior.",
+            "paragraphs": [
+              {"purpose": "Setup and Baselines", "sentence_roles": ["Problem Definition", "Existing Approaches"]},
+              {"purpose": "Main Results", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Ablation and Analysis", "sentence_roles": ["Key Insight", "Experimental Evidence"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "theory_to_algorithm",
+      "name": "Theory -> Algorithm",
+      "description": "A paper deriving an algorithm from a formal property, bound, objective, or theoretical diagnosis.",
+      "rationale": "Best when the main contribution starts from a theorem, objective, or formal explanation.",
+      "signals": ["theory", "bound", "guarantee", "convergence", "proof", "objective", "formal"],
+      "field_weights": {"has_theory": 5, "has_experiments": 1},
+      "persuasion_strategy": "Make the formal result useful by showing how it implies a better algorithm and measurable empirical gains.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Connect a practical bottleneck to a formal gap.",
+            "paragraphs": [
+              {"purpose": "Context and Problem", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Theoretical Gap", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Formal Insight", "sentence_roles": ["Theory Pattern", "Key Insight"]},
+              {"purpose": "Algorithm and Results", "sentence_roles": ["Method Overview", "Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Preliminaries",
+            "function": "Define notation, assumptions, and the formal problem.",
+            "paragraphs": [
+              {"purpose": "Problem Setup", "sentence_roles": ["Problem Definition", "Theory Pattern"]},
+              {"purpose": "Assumptions", "sentence_roles": ["Theory Pattern", "Limitation Analysis"]}
+            ]
+          },
+          {
+            "name": "Theory and Algorithm",
+            "function": "State the formal result and derive the algorithm.",
+            "paragraphs": [
+              {"purpose": "Main Theoretical Result", "sentence_roles": ["Theory Pattern", "Key Insight"]},
+              {"purpose": "Algorithm Derivation", "sentence_roles": ["Theory Pattern", "Method Overview"]},
+              {"purpose": "Practical Implementation", "sentence_roles": ["Method Overview", "Limitation Analysis"]}
+            ]
+          },
+          {
+            "name": "Experiments",
+            "function": "Validate both the theoretical implication and empirical competitiveness.",
+            "paragraphs": [
+              {"purpose": "Protocol", "sentence_roles": ["Problem Definition", "Existing Approaches"]},
+              {"purpose": "Main Results", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Theory-guided Analysis", "sentence_roles": ["Theory Pattern", "Experimental Evidence"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "algorithm_theoretical_analysis",
+      "name": "Algorithm + Theoretical Analysis",
+      "description": "A method paper strengthened by analysis that explains when and why the algorithm works.",
+      "rationale": "Best when the method is primary but theory supports its credibility.",
+      "signals": ["algorithm", "analysis", "guarantee", "complexity", "optimization"],
+      "field_weights": {"has_theory": 3, "has_experiments": 2},
+      "persuasion_strategy": "Balance practical improvements with enough theory to reduce the risk of heuristic engineering.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Present an algorithmic bottleneck and preview formal support.",
+            "paragraphs": [
+              {"purpose": "Context and Problem", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Algorithmic Limitations", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Method and Analysis", "sentence_roles": ["Method Overview", "Theory Pattern"]},
+              {"purpose": "Evidence and Contributions", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Methodology",
+            "function": "Describe the algorithm as modular decisions tied to the claim.",
+            "paragraphs": [
+              {"purpose": "Algorithm Overview", "sentence_roles": ["Method Overview", "Key Insight"]},
+              {"purpose": "Core Components", "sentence_roles": ["Method Overview", "Limitation Analysis"]}
+            ]
+          },
+          {
+            "name": "Theoretical Analysis",
+            "function": "Explain properties such as convergence, consistency, stability, or complexity.",
+            "paragraphs": [
+              {"purpose": "Assumptions and Result", "sentence_roles": ["Theory Pattern", "Problem Definition"]},
+              {"purpose": "Interpretation", "sentence_roles": ["Theory Pattern", "Key Insight"]}
+            ]
+          },
+          {
+            "name": "Experiments",
+            "function": "Prove practical value and isolate algorithmic components.",
+            "paragraphs": [
+              {"purpose": "Setup", "sentence_roles": ["Existing Approaches", "Problem Definition"]},
+              {"purpose": "Main Results", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Ablation", "sentence_roles": ["Method Overview", "Experimental Evidence"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "framework_unification",
+      "name": "Framework Unification",
+      "description": "A paper that unifies multiple methods, tasks, or assumptions under one general framework.",
+      "rationale": "Best when the value is a new perspective that explains several existing approaches.",
+      "signals": ["unify", "unified", "framework", "general", "taxonomy", "perspective"],
+      "field_weights": {"has_analysis": 2, "has_task": 1},
+      "persuasion_strategy": "Show that the framework simplifies prior work and enables new predictions, methods, or evaluations.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Move from fragmented literature to a unifying view.",
+            "paragraphs": [
+              {"purpose": "Fragmented Context", "sentence_roles": ["Broad Context", "Existing Approaches"]},
+              {"purpose": "Unification Gap", "sentence_roles": ["Limitation Analysis", "Problem Definition"]},
+              {"purpose": "Framework", "sentence_roles": ["Key Insight", "Framework Overview"]},
+              {"purpose": "Implications", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Unified Framework",
+            "function": "Define the common representation and map prior work into it.",
+            "paragraphs": [
+              {"purpose": "Core Abstraction", "sentence_roles": ["Key Insight", "Framework Overview"]},
+              {"purpose": "Mapping Existing Work", "sentence_roles": ["Existing Approaches", "Framework Overview"]}
+            ]
+          },
+          {
+            "name": "Applications",
+            "function": "Demonstrate what the framework makes possible.",
+            "paragraphs": [
+              {"purpose": "New Analysis or Method", "sentence_roles": ["Method Overview", "Contributions"]},
+              {"purpose": "Empirical Validation", "sentence_roles": ["Experimental Evidence", "Limitation Analysis"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "benchmark_dataset",
+      "name": "Benchmark / Dataset Construction",
+      "description": "A paper proposing a dataset, benchmark, or evaluation protocol as the main contribution.",
+      "rationale": "Best when the primary artifact changes how a community measures progress.",
+      "signals": ["benchmark", "dataset", "evaluation", "protocol", "leaderboard", "annotation"],
+      "field_weights": {"has_benchmark": 6, "has_experiments": 2},
+      "persuasion_strategy": "Establish task importance, dataset quality, evaluation reliability, and new insights about model behavior.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Argue that existing evaluation fails to measure an important capability.",
+            "paragraphs": [
+              {"purpose": "Capability Context", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Evaluation Gap", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Benchmark Design", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Findings", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Benchmark Design",
+            "function": "Specify data source, annotation, metrics, and validation protocol.",
+            "paragraphs": [
+              {"purpose": "Task and Data", "sentence_roles": ["Problem Definition", "Method Overview"]},
+              {"purpose": "Quality Control", "sentence_roles": ["Method Overview", "Experimental Evidence"]}
+            ]
+          },
+          {
+            "name": "Evaluation",
+            "function": "Evaluate representative systems and derive community-facing findings.",
+            "paragraphs": [
+              {"purpose": "Models and Metrics", "sentence_roles": ["Existing Approaches", "Problem Definition"]},
+              {"purpose": "Results and Analysis", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "empirical_analysis",
+      "name": "Empirical Analysis",
+      "description": "A paper whose main value is a systematic empirical study, diagnosis, or comparison.",
+      "rationale": "Best when the contribution is evidence and interpretation rather than a new method.",
+      "signals": ["empirical", "analysis", "study", "compare", "diagnosis", "survey"],
+      "field_weights": {"has_analysis": 4, "has_experiments": 3},
+      "persuasion_strategy": "Make the experimental design comprehensive enough that the resulting claims are hard to dismiss.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Explain why the field lacks reliable empirical understanding.",
+            "paragraphs": [
+              {"purpose": "Context", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Knowledge Gap", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Study Design", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Findings", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Study Design",
+            "function": "Define questions, variables, models, datasets, and metrics.",
+            "paragraphs": [
+              {"purpose": "Research Questions", "sentence_roles": ["Problem Definition", "Key Insight"]},
+              {"purpose": "Protocol", "sentence_roles": ["Method Overview", "Existing Approaches"]}
+            ]
+          },
+          {
+            "name": "Results and Analysis",
+            "function": "Answer each research question with controlled evidence.",
+            "paragraphs": [
+              {"purpose": "Main Findings", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Robustness", "sentence_roles": ["Experimental Evidence", "Limitation Analysis"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "model_architecture_design",
+      "name": "Model Architecture Design",
+      "description": "A paper proposing a new model architecture or architectural component.",
+      "rationale": "Best when the main technical object is a model structure.",
+      "signals": ["architecture", "module", "transformer", "network", "encoder", "decoder", "model"],
+      "field_weights": {"has_architecture": 5, "has_experiments": 2},
+      "persuasion_strategy": "Tie every architectural choice to a failure mode and validate it through ablations.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Move from model limitations to architectural design principles.",
+            "paragraphs": [
+              {"purpose": "Modeling Context", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Architecture Gap", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Design Insight", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Results and Contributions", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Architecture",
+            "function": "Describe modules, data flow, objective, and complexity.",
+            "paragraphs": [
+              {"purpose": "Overview", "sentence_roles": ["Method Overview", "Key Insight"]},
+              {"purpose": "Components", "sentence_roles": ["Method Overview", "Limitation Analysis"]}
+            ]
+          },
+          {
+            "name": "Experiments",
+            "function": "Compare against strong architectures and isolate components.",
+            "paragraphs": [
+              {"purpose": "Setup", "sentence_roles": ["Existing Approaches", "Problem Definition"]},
+              {"purpose": "Main Results", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Ablations", "sentence_roles": ["Method Overview", "Experimental Evidence"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "new_task_formulation",
+      "name": "New Task Formulation",
+      "description": "A paper defining a new task, setting, or problem formulation.",
+      "rationale": "Best when the novelty lies in what should be solved, not only how to solve it.",
+      "signals": ["new task", "formulation", "setting", "problem definition", "scenario"],
+      "field_weights": {"has_task": 4, "has_benchmark": 2},
+      "persuasion_strategy": "Show that the task is important, not reducible to existing tasks, and measurable with clear protocols.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Justify why the new task should exist.",
+            "paragraphs": [
+              {"purpose": "Application Need", "sentence_roles": ["Broad Context", "Problem Definition"]},
+              {"purpose": "Why Existing Tasks Are Insufficient", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "New Formulation", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Initial Evidence", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Task Definition",
+            "function": "Specify inputs, outputs, constraints, metrics, and assumptions.",
+            "paragraphs": [
+              {"purpose": "Formal Definition", "sentence_roles": ["Problem Definition", "Theory Pattern"]},
+              {"purpose": "Evaluation Protocol", "sentence_roles": ["Method Overview", "Experimental Evidence"]}
+            ]
+          },
+          {
+            "name": "Baselines and Experiments",
+            "function": "Demonstrate feasibility and expose why existing methods struggle.",
+            "paragraphs": [
+              {"purpose": "Baselines", "sentence_roles": ["Existing Approaches", "Limitation Analysis"]},
+              {"purpose": "Results", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "comparative_analysis",
+      "name": "Comparative Analysis",
+      "description": "A paper comparing families of methods to derive practical or scientific conclusions.",
+      "rationale": "Best when the contribution is a careful comparison that changes how methods are understood.",
+      "signals": ["comparative", "comparison", "taxonomy", "evaluate", "trade-off", "tradeoff"],
+      "field_weights": {"has_analysis": 3, "has_experiments": 2},
+      "persuasion_strategy": "Avoid shallow benchmarking by making comparison axes explicit and claims conditional on evidence.",
+      "logical_template": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "function": "Motivate why existing comparisons are incomplete or misleading.",
+            "paragraphs": [
+              {"purpose": "Context", "sentence_roles": ["Broad Context", "Existing Approaches"]},
+              {"purpose": "Comparison Gap", "sentence_roles": ["Limitation Analysis", "Problem Definition"]},
+              {"purpose": "Analysis Axes", "sentence_roles": ["Key Insight", "Method Overview"]},
+              {"purpose": "Findings", "sentence_roles": ["Experimental Evidence", "Contributions"]}
+            ]
+          },
+          {
+            "name": "Comparison Framework",
+            "function": "Define method families, evaluation axes, and controlled variables.",
+            "paragraphs": [
+              {"purpose": "Taxonomy", "sentence_roles": ["Existing Approaches", "Key Insight"]},
+              {"purpose": "Protocol", "sentence_roles": ["Method Overview", "Problem Definition"]}
+            ]
+          },
+          {
+            "name": "Comparative Results",
+            "function": "Report trade-offs and explain when each method works.",
+            "paragraphs": [
+              {"purpose": "Main Comparison", "sentence_roles": ["Experimental Evidence", "Contributions"]},
+              {"purpose": "Trade-off Analysis", "sentence_roles": ["Limitation Analysis", "Key Insight"]}
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

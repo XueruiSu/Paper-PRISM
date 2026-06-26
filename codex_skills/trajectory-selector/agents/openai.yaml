@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trajectory Selector"
+  short_description: "Select exemplar sentence trajectories for PaperPRISM."
+  default_prompt: "Select a PaperPRISM exemplar trajectory and adapt it into a ClozeBlueprint seed."

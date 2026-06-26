@@ -1,0 +1,360 @@
+{
+  "version": "0.1.0",
+  "description": "Controlled PaperPRISM persuasion strategy subtype library. Subtypes encode reusable writing trajectories mined from sentence-role reports and PaperPRISM archetype analysis.",
+  "role_schema": "data/archetype_papers/pdfs/arxiv_downloads/sentence_role_reports/*_sentence_roles.stats.json",
+  "archetypes": [
+    {
+      "archetype_id": "observation_to_method",
+      "subtypes": [
+        {
+          "id": "failure_mode_to_fix",
+          "name": "Failure Mode to Fix",
+          "persuasion_core": "Convince reviewers that a concrete failure mode is real, important, and directly motivates the proposed method.",
+          "positive_signals": ["failure", "fails", "error", "instability", "robust", "weakness", "observation", "phenomenon"],
+          "negative_signals": ["dataset is the main contribution", "benchmark is the main contribution"],
+          "required_evidence": ["failure observation", "method mechanism", "main result", "ablation"],
+          "role_profile": {
+            "high": ["ProblemLimitation", "Evidence", "Interpretation", "MethodMechanism"],
+            "medium": ["Background", "MainClaim", "Comparison"],
+            "risk_if_low": {
+              "Evidence": "The observation may look anecdotal.",
+              "Interpretation": "The method may not appear logically derived from the observation."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Empirical or Conceptual Failure", "roles": ["Background", "ProblemLimitation", "Evidence"]},
+              {"purpose": "Observation to Motivation", "roles": ["Interpretation", "Motivation", "ResearchQuestion"]},
+              {"purpose": "Fix and Evidence Preview", "roles": ["MainClaim", "MethodMechanism", "Evidence", "Contribution"]}
+            ],
+            "Experiments": [
+              {"purpose": "Failure Mode Probe", "roles": ["ResearchQuestion", "MethodMechanism", "Evidence"]},
+              {"purpose": "Ablation and Interpretation", "roles": ["Evidence", "Interpretation", "Comparison"]}
+            ]
+          },
+          "representative_papers": ["lottery_ticket_2019"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "theory_to_algorithm",
+      "subtypes": [
+        {
+          "id": "theorem_driven_algorithm",
+          "name": "Theorem-driven Algorithm",
+          "persuasion_core": "Convince reviewers that a formal result yields a necessary and implementable algorithmic design.",
+          "positive_signals": ["theorem", "proof", "bound", "guarantee", "convergence", "formal", "certified"],
+          "negative_signals": ["no theoretical analysis", "purely empirical"],
+          "required_evidence": ["formal setup", "assumptions", "theoretical result", "algorithm derivation", "empirical validation"],
+          "role_profile": {
+            "high": ["Definition", "AssumptionScope", "TheoreticalResult", "MethodMechanism"],
+            "medium": ["Evidence", "Interpretation", "ProblemLimitation"],
+            "risk_if_low": {
+              "AssumptionScope": "The theorem may appear detached from the actual setting.",
+              "Interpretation": "Reviewers may not see how the theory implies the algorithm."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Practical Bottleneck and Formal Gap", "roles": ["Background", "ProblemLimitation", "Motivation"]},
+              {"purpose": "Formal Setup and Result Preview", "roles": ["Definition", "AssumptionScope", "TheoreticalResult"]},
+              {"purpose": "Algorithmic Consequence", "roles": ["Interpretation", "MainClaim", "MethodMechanism", "Evidence"]}
+            ],
+            "Theory and Algorithm": [
+              {"purpose": "Assumptions and Main Result", "roles": ["Definition", "AssumptionScope", "TheoreticalResult"]},
+              {"purpose": "From Result to Algorithm", "roles": ["Interpretation", "MethodMechanism", "MainClaim"]}
+            ]
+          },
+          "representative_papers": ["randomized_smoothing_2019", "wasserstein_gan_2017"]
+        },
+        {
+          "id": "objective_reformulation",
+          "name": "Objective Reformulation",
+          "persuasion_core": "Convince reviewers that reformulating the objective exposes the right optimization target and leads to a better algorithm.",
+          "positive_signals": ["objective", "loss", "optimization", "regularization", "reformulation", "surrogate", "gradient"],
+          "negative_signals": ["main contribution is dataset", "only benchmark"],
+          "required_evidence": ["objective diagnosis", "derivation", "algorithm update", "main result"],
+          "role_profile": {
+            "high": ["Definition", "ProblemLimitation", "Interpretation", "MethodMechanism"],
+            "medium": ["TheoreticalResult", "Evidence", "Comparison"],
+            "risk_if_low": {
+              "Definition": "The reformulated target may look arbitrary.",
+              "ProblemLimitation": "The need for a new objective may be unclear."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Objective Mismatch", "roles": ["Background", "ProblemLimitation", "Definition"]},
+              {"purpose": "Reformulation Insight", "roles": ["Interpretation", "Motivation", "MainClaim"]},
+              {"purpose": "Algorithm and Validation", "roles": ["MethodMechanism", "Evidence", "Contribution"]}
+            ],
+            "Theory and Algorithm": [
+              {"purpose": "Objective Diagnosis", "roles": ["Definition", "ProblemLimitation", "Interpretation"]},
+              {"purpose": "Derived Update Rule", "roles": ["TheoreticalResult", "MethodMechanism", "AssumptionScope"]}
+            ]
+          },
+          "representative_papers": ["soft_actor_critic_2018"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "algorithm_theoretical_analysis",
+      "subtypes": [
+        {
+          "id": "practical_algorithm_with_explanatory_theory",
+          "name": "Practical Algorithm with Explanatory Theory",
+          "persuasion_core": "Convince reviewers that the method is practically useful and the analysis explains why it works.",
+          "positive_signals": ["algorithm", "analysis", "guarantee", "regularization", "conservative", "optimization"],
+          "negative_signals": ["no method", "dataset only"],
+          "required_evidence": ["algorithm mechanism", "theoretical analysis", "main result", "comparison"],
+          "role_profile": {
+            "high": ["MethodMechanism", "Interpretation", "TheoreticalResult", "Evidence"],
+            "medium": ["ProblemLimitation", "Comparison", "Definition"],
+            "risk_if_low": {
+              "TheoreticalResult": "The analysis may not reduce the risk of heuristic engineering.",
+              "Evidence": "The practical benefit may remain unsupported."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Algorithmic Bottleneck", "roles": ["Background", "ProblemLimitation", "Motivation"]},
+              {"purpose": "Method with Analytical Support", "roles": ["MainClaim", "MethodMechanism", "TheoreticalResult"]},
+              {"purpose": "Empirical and Interpretive Evidence", "roles": ["Evidence", "Interpretation", "Contribution"]}
+            ],
+            "Theoretical Analysis": [
+              {"purpose": "Property and Conditions", "roles": ["Definition", "AssumptionScope", "TheoreticalResult"]},
+              {"purpose": "Interpretation for the Algorithm", "roles": ["Interpretation", "MethodMechanism"]}
+            ]
+          },
+          "representative_papers": ["conservative_q_learning_2020", "sharpness_aware_minimization_2021"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "framework_unification",
+      "subtypes": [
+        {
+          "id": "knowledge_or_system_unification",
+          "name": "Knowledge or System Unification",
+          "persuasion_core": "Convince reviewers that a unified framework connects previously separate components and improves reuse or generality.",
+          "positive_signals": ["framework", "unify", "unified", "system", "retrieval", "integration", "pipeline"],
+          "negative_signals": ["single component only"],
+          "required_evidence": ["framework definition", "component mechanism", "comparison", "main result"],
+          "role_profile": {
+            "high": ["MethodMechanism", "Definition", "MainClaim", "Evidence"],
+            "medium": ["RelatedWorkPositioning", "Comparison", "Interpretation"],
+            "risk_if_low": {
+              "Definition": "The framework boundary may be unclear.",
+              "Comparison": "The unification value may not be visible."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Fragmented Existing Approaches", "roles": ["Background", "RelatedWorkPositioning", "ProblemLimitation"]},
+              {"purpose": "Unified Framing", "roles": ["Definition", "MainClaim", "MethodMechanism"]},
+              {"purpose": "General Value and Evidence", "roles": ["Evidence", "Interpretation", "Contribution"]}
+            ],
+            "Methodology": [
+              {"purpose": "Framework Components", "roles": ["Definition", "MethodMechanism"]},
+              {"purpose": "How Components Interact", "roles": ["MethodMechanism", "Interpretation"]}
+            ]
+          },
+          "representative_papers": ["retrieval_augmented_generation_2020"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "benchmark_dataset",
+      "subtypes": [
+        {
+          "id": "capability_measurement",
+          "name": "Capability Measurement Benchmark",
+          "persuasion_core": "Convince reviewers that the benchmark systematically measures important model capabilities and reveals meaningful capability gaps.",
+          "positive_signals": ["capability", "measure", "measurement", "evaluate", "evaluation", "benchmark", "suite", "massive"],
+          "negative_signals": ["new algorithm is the main contribution"],
+          "required_evidence": ["capability taxonomy", "evaluation protocol", "model results", "interpretation"],
+          "role_profile": {
+            "high": ["Definition", "Evidence", "Interpretation", "Comparison"],
+            "medium": ["MethodMechanism", "ProblemLimitation", "Background"],
+            "risk_if_low": {
+              "Interpretation": "The paper may become a leaderboard without scientific insight.",
+              "Definition": "Capability dimensions may appear arbitrary."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Measurement Gap", "roles": ["Background", "ProblemLimitation", "Motivation"]},
+              {"purpose": "Capability Dimensions", "roles": ["Definition", "MainClaim", "MethodMechanism"]},
+              {"purpose": "Findings and Implications", "roles": ["Evidence", "Interpretation", "Comparison", "Contribution"]}
+            ],
+            "Experiments": [
+              {"purpose": "Capability Questions and Protocol", "roles": ["ResearchQuestion", "Definition", "MethodMechanism"]},
+              {"purpose": "Findings, Comparison, and Interpretation", "roles": ["Evidence", "Comparison", "Interpretation"]}
+            ]
+          },
+          "representative_papers": ["mmlu_2021", "big_bench_2023", "helm_2023"]
+        },
+        {
+          "id": "evaluation_platform",
+          "name": "Evaluation Platform",
+          "persuasion_core": "Convince reviewers that a standardized platform makes evaluation broader, more reliable, and more comparable.",
+          "positive_signals": ["platform", "protocol", "standardized", "leaderboard", "suite", "evaluation", "benchmark"],
+          "negative_signals": ["only one narrow task"],
+          "required_evidence": ["artifact definition", "protocol", "baselines", "quality control"],
+          "role_profile": {
+            "high": ["Definition", "MethodMechanism", "Comparison", "AssumptionScope"],
+            "medium": ["Evidence", "RelatedWorkPositioning", "Contribution"],
+            "risk_if_low": {
+              "MethodMechanism": "The platform may not be reproducible.",
+              "Comparison": "The value over existing evaluation may be unclear."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Fragmented Evaluation", "roles": ["Background", "RelatedWorkPositioning", "ProblemLimitation"]},
+              {"purpose": "Standardized Platform", "roles": ["Definition", "MethodMechanism", "MainClaim"]},
+              {"purpose": "Coverage and Reproducibility Value", "roles": ["Evidence", "Comparison", "Contribution"]}
+            ],
+            "Evaluation Protocol": [
+              {"purpose": "Protocol and Metrics", "roles": ["Definition", "MethodMechanism", "AssumptionScope"]},
+              {"purpose": "Comparable Baselines", "roles": ["Comparison", "Evidence", "Interpretation"]}
+            ]
+          },
+          "representative_papers": ["glue_2019", "superglue_2019"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "empirical_analysis",
+      "subtypes": [
+        {
+          "id": "phenomenon_characterization",
+          "name": "Phenomenon Characterization",
+          "persuasion_core": "Convince reviewers that controlled empirical analysis reveals a reusable pattern, law, or failure mode.",
+          "positive_signals": ["analysis", "empirical", "scaling", "phenomenon", "characterize", "observe", "study"],
+          "negative_signals": ["new architecture is the main contribution"],
+          "required_evidence": ["controlled setup", "multiple results", "interpretation", "comparison"],
+          "role_profile": {
+            "high": ["Evidence", "Interpretation", "Comparison", "MethodMechanism"],
+            "medium": ["Definition", "Background", "RelatedWorkPositioning"],
+            "risk_if_low": {
+              "Interpretation": "Findings may look like disconnected measurements.",
+              "MethodMechanism": "The analysis protocol may not be reproducible."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Unresolved Empirical Phenomenon", "roles": ["Background", "ProblemLimitation", "ResearchQuestion"]},
+              {"purpose": "Controlled Study Design", "roles": ["Definition", "MethodMechanism", "MainClaim"]},
+              {"purpose": "Findings and Implications", "roles": ["Evidence", "Interpretation", "Contribution"]}
+            ],
+            "Experiments": [
+              {"purpose": "Controlled Variables", "roles": ["Definition", "MethodMechanism", "AssumptionScope"]},
+              {"purpose": "Patterns and Explanations", "roles": ["Evidence", "Interpretation", "Comparison"]}
+            ]
+          },
+          "representative_papers": ["scaling_laws_2020", "rethinking_pruning_2019"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "model_architecture_design",
+      "subtypes": [
+        {
+          "id": "architectural_inductive_bias_replacement",
+          "name": "Architectural Inductive Bias Replacement",
+          "persuasion_core": "Convince reviewers that replacing an established architectural bias is viable because the new mechanism scales or transfers better.",
+          "positive_signals": ["architecture", "model", "transformer", "attention", "backbone", "component", "module"],
+          "negative_signals": ["benchmark only", "dataset only"],
+          "required_evidence": ["architecture mechanism", "comparison", "ablation", "main result"],
+          "role_profile": {
+            "high": ["MethodMechanism", "Comparison", "Definition", "Evidence"],
+            "medium": ["Background", "RelatedWorkPositioning", "MainClaim"],
+            "risk_if_low": {
+              "MethodMechanism": "The architecture may look like a black-box variation.",
+              "Comparison": "The replacement of prior designs may not be justified."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Dominant Architecture and Bottleneck", "roles": ["Background", "RelatedWorkPositioning", "ProblemLimitation"]},
+              {"purpose": "New Design Principle", "roles": ["Definition", "MainClaim", "MethodMechanism"]},
+              {"purpose": "Scaling or Transfer Evidence", "roles": ["Evidence", "Comparison", "Contribution"]}
+            ],
+            "Methodology": [
+              {"purpose": "Architecture Overview", "roles": ["Definition", "MethodMechanism"]},
+              {"purpose": "Component Rationale", "roles": ["Interpretation", "Comparison", "MethodMechanism"]}
+            ]
+          },
+          "representative_papers": ["bert_2019", "vision_transformer_2021", "transformer_2017"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "new_task_formulation",
+      "subtypes": [
+        {
+          "id": "task_gap_to_benchmark",
+          "name": "Task Gap to Benchmark",
+          "persuasion_core": "Convince reviewers that a missing task formulation captures a capability existing tasks fail to evaluate.",
+          "positive_signals": ["new task", "task", "dataset", "benchmark", "requires", "reading comprehension", "reasoning"],
+          "negative_signals": ["task is already standard"],
+          "required_evidence": ["task definition", "existing task limitation", "dataset construction", "baseline failure"],
+          "role_profile": {
+            "high": ["Definition", "ProblemLimitation", "Evidence", "MethodMechanism"],
+            "medium": ["Background", "Motivation", "Comparison"],
+            "risk_if_low": {
+              "Definition": "The task may appear underspecified.",
+              "ProblemLimitation": "Reviewers may not believe a new task is needed."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Existing Task Gap", "roles": ["Background", "ProblemLimitation", "Motivation"]},
+              {"purpose": "New Task Definition", "roles": ["Definition", "ResearchQuestion", "MainClaim"]},
+              {"purpose": "Benchmark and Baseline Failure", "roles": ["MethodMechanism", "Evidence", "Comparison", "Contribution"]}
+            ],
+            "Benchmark Construction": [
+              {"purpose": "Task Inputs and Outputs", "roles": ["Definition", "MethodMechanism"]},
+              {"purpose": "Construction and Validation", "roles": ["MethodMechanism", "Evidence", "AssumptionScope"]}
+            ]
+          },
+          "representative_papers": ["drop_2019", "swe_bench_2024"]
+        }
+      ]
+    },
+    {
+      "archetype_id": "comparative_analysis",
+      "subtypes": [
+        {
+          "id": "systematic_comparison_to_guidelines",
+          "name": "Systematic Comparison to Guidelines",
+          "persuasion_core": "Convince reviewers that systematic comparison reveals reliable guidance about when methods work or fail.",
+          "positive_signals": ["compare", "comparison", "systematic", "analysis", "guideline", "baseline", "closer look"],
+          "negative_signals": ["single new method only"],
+          "required_evidence": ["comparison protocol", "multiple baselines", "controlled results", "interpretation"],
+          "role_profile": {
+            "high": ["Comparison", "Evidence", "Interpretation", "RelatedWorkPositioning"],
+            "medium": ["Definition", "ProblemLimitation", "Contribution"],
+            "risk_if_low": {
+              "Comparison": "The paper may not deliver its main comparative value.",
+              "Interpretation": "The study may not produce reusable guidance."
+            }
+          },
+          "role_trajectory": {
+            "Introduction": [
+              {"purpose": "Conflicting or Incomplete Prior Conclusions", "roles": ["Background", "RelatedWorkPositioning", "ProblemLimitation"]},
+              {"purpose": "Comparison Protocol", "roles": ["Definition", "MethodMechanism", "MainClaim"]},
+              {"purpose": "Guidance from Results", "roles": ["Evidence", "Comparison", "Interpretation", "Contribution"]}
+            ],
+            "Experiments": [
+              {"purpose": "Controlled Comparison Setup", "roles": ["Definition", "MethodMechanism", "Comparison"]},
+              {"purpose": "Findings and Practical Guidance", "roles": ["Evidence", "Interpretation", "Contribution"]}
+            ]
+          },
+          "representative_papers": ["closer_look_few_shot_2019"]
+        }
+      ]
+    }
+  ]
+}
