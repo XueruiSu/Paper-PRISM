@@ -52,6 +52,17 @@ Interact with Codex inside this repository and provide your research materials d
 - Related works, theoretical analysis, limitations, or an existing draft.
 - Target venue or writing style requirements.
 
+Recommended installation:
+
+```bash
+export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+export PAPERPRISM_HOME="${CODEX_HOME}/paperprism"
+
+mkdir -p "$CODEX_HOME/skills" "$PAPERPRISM_HOME"
+cp -R codex_skills/* "$CODEX_HOME/skills/"
+cp -R data scripts paperprism_state_templates "$PAPERPRISM_HOME/"
+```
+
 Example request:
 
 ```text
