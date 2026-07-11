@@ -1,3 +1,5 @@
+<img width="316" height="232" alt="PaperPRISM" src="https://github.com/user-attachments/assets/ec204120-72c0-4fa9-a701-7fa78aac76e0" />
+
 # PaperPRISM
 
 PaperPRISM is a Codex-native Research-to-Paper Workflow System for AI researchers. It helps users organize existing research assets, build a defensible scientific argument, and turn the work into a submission-ready paper.
